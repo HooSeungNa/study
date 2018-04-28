@@ -1,0 +1,48 @@
+파라미터 w1,w2,w3,b1,b2,b3
+
+input image : 먼저 원하는 크기로 이미지 상향 조정 한다.(using biocubic interpolation)
+
+(input 와 output 사이즈는 같다.)
+
+
+SRCNN 층
+cnn -> relu -> cnn -> relu -> cnn 
+
+f1 size: 9     f2 size: 1     f3 size: 5
+n1 : 64           n2 : 32
+no padding
+
+MSE loss  
+ 
+
+weight 초기화는 randomly ( 가우시안 분포 : 평균이 0 이고 표준편차(stdev) 가 0.001, 바이어스는 0 ) 
+
+
+learning rate =e-4 (1 ,2 layer) , e-5(3 layer) ->3 layer 의 러닝레이트 중요 소음제거 사례와 유사
+
+
+train data 만드는법 : 
+
+random crop 을하여서 sub image를 만들고 (label 이미지)
+
+가우시안 커널을 통해서 블러링 하고, 바이큐빅 보간법을 통해서 업스케일링 한다. (training image)
+
+-->가우시안블러링 하기 전에 이미지 사이즈 축소 한후 블러링, 그다음 바이 큐빅 업스케일링
+
+
+
+sub image의 크롭 사이즈는 33 (stride 는 14로 하여 크롭)
+set5 :validation
+set 14
+
+upscaling factor : 2,3,4 (2에서 제일 결과가 좋게 나온다) 
+
+
+
+
+f1 size: 9     f2 size: 3     f3 size: 5
+
+f1 size: 9     f2 size: 5     f3 size: 5 는 시간이 더걸림 그러나 9-1-5 보다 성능은 좋음
+
+
+https://github.com/Edwardlzy/SRCNN/blob/master/prepare_train.py

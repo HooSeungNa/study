@@ -1,0 +1,30 @@
+<TensorBoard>
+1. tensorboard directory 설정
+TB_SUMMARY_DIR = './tb/mnist' # tensorboard directory
+2. Image input
+tf.summary.image('input', x_image, 3)
+3. parameter
+tf.summary.histogram("X", X)
+tf.summary.histogram("weights", W1)
+tf.summary.histogram("bias", b1)
+tf.summary.histogram("layer", L1)
+4.cost ,loss 
+tf.summary.scalar("loss", cost)
+5. 모두 합친다.
+summary = tf.summary.merge_all() # 요약된것을 합친다.
+
+6. create summary writer
+writer = tf.summary.FileWriter(TB_SUMMARY_DIR)
+writer.add_graph(sess.graph)
+global_step = 0
+
+7. 학습과정에서 summary를 더해준다
+writer.add_summary(s, global_step=global_step) # 텐서보드에 올린다.
+global_step += 1 #텐서보드에 올라가는 global step 
+
+8. 텐서보드 로그를 저장한 곳에서 터미널을 키고 명령어 친다.
+tensorboard --logdir tb/
+
+9.인터넷을 키고 주소창에 친다.
+Starting TensorBoard b'41' on port 6006
+(You can navigate to http://10.0.1.4:6006)

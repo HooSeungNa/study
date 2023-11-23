@@ -1,13 +1,18 @@
 <도커>
 
 1. 도커 설치(docker desktop)
-2. 도커 이미지 ubuntu 받기
+2. 도커 이미지 ubuntu 받기 
+docker search ubuntu 
+docker pull ubuntu
+docker create -it --name 원하는 이름 
+docker exec -it 원하는 이름 bash
 3. docker run -v `마운트 할 경로` --name [원하는이름] bash
 
 <git>
 
 1. git clone [git 주소]
-2. 토큰 발급 (repo 권한 체크)
+2. 토큰 발급 (repo 권한 체크) -> pw 대신 쓰임
+git config credential.helper store하고 커밋할때 한번 입력하면, 인증없이 사용가능
 3. git cofing username, password, email 등록
 
 <vscode>
